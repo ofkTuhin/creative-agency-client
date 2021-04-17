@@ -10,7 +10,7 @@ const ServiceDetails = (props) => {
                 <img src={imgUrl}></img>
                 <h6>{name}</h6>
                 <h2>${price}</h2>
-                <p>Duration {duration}</p>
+                <p>Duration {duration} Month</p>
                 <p>{classes} class</p>
                 
                 <p>{support} Support</p>

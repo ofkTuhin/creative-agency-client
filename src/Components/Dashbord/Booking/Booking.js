@@ -1,13 +1,15 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect, useContext } from 'react';
 import Sidebar from '../Sidebar/Sidebar';
 import { useForm } from "react-hook-form";
 import './booking.css'
 import PaymentCard from '../PaymentCard/PaymentCard';
 import { useParams } from 'react-router';
+import { UserContext } from '../../../App';
 
 
 
 const Booking = () => {
+    const [loggedInUser,setLoggedInUser]=useContext(UserContext)
     const [orderProduct,setOrderProduct]=useState([])
     const {_id}=useParams()
 
@@ -22,14 +24,26 @@ const Booking = () => {
     
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const[bookingData,setBookingData]=useState(null)
     const onSubmit =  (data) => {
-
-
-       
-       
-
-        console.log(data)
+        setBookingData(data)   
     }
+    const handlePayment=paymentID=>{
+       const bookingInfo={
+           ...loggedInUser,
+           bookingData:bookingData,
+           Date:new Date().toDateString(),
+           image:orderProduct.imgUrl,
+           paymentID:paymentID
+       }
+       fetch('http://localhost:5000/serviceBooking',{
+           method:'POST',
+           headers:{'content-type':'application/json'},
+           body:JSON.stringify(bookingInfo)
+               })
+
+    }
+
     return (
         <div className="bookings">
 
@@ -40,8 +54,8 @@ const Booking = () => {
             </div>
 
             <div className="row">
-                <div className="col-md-2"><Sidebar _id={_id}></Sidebar></div>
-                <div className="col-md-4">
+                <div className="col-md-2" ><Sidebar _id={_id}></Sidebar></div>
+                <div className="col-md-4" style={{display:bookingData?'none':'block'}}>
                     <div className="booking-form">
                         <form onSubmit={handleSubmit(onSubmit)}>
                             {/* register your input into the hook by invoking the "register" function */}
@@ -50,8 +64,8 @@ const Booking = () => {
 
 
                             <div className="form-group">
-                                <input {...register("name", { required: true })} type="text" className="form-control" name="name" placeholder="Your Name" />
-                                {errors.name && <span>This field is required</span>}
+                                <input {...register("course", { required: true })}  className="form-control" value={orderProduct.name} name="course"/>
+                                {errors.course && <span>This field is required</span>}
                             </div>
                             {/* <div className="form-group">
                         <input {...register("subject", { required: true })} type="text" className="form-control" name="subject" placeholder="Phone Number" />
@@ -59,22 +73,13 @@ const Booking = () => {
                     </div> */}
 
                             <div className="form-group">
-                                <input {...register("email", { required: true })} type="email" className="form-control" name="email" placeholder="Email" />
-                                {errors.email && <span>This field is required</span>}
+                                <input {...register("price", { required: true })} className="form-control" name="price" value={`$${orderProduct.price}`}/>
+                                {errors.price && <span>This field is required</span>}
                             </div>
                             <div className="form-group row">
 
-                                <div className="col-4">
-
-                                    <select className="form-control" name="subject" {...register("subject", { required: true })} >
-                                        <option disabled={true} value="Not set">Choose subject</option>
-                                        <option value="Web design">{orderProduct.name}</option>
-                                        
-                                    </select>
-                                    {errors.subject && <span className="text-danger">This field is required</span>}
-
-                                </div>
-                                <div className="col-4">
+                               
+                                <div className="col-6">
 
                                     <select className="form-control" name="gender" {...register("gender", { required: true })} >
                                         <option disabled={true} value="Not set">Select Gender</option>
@@ -88,7 +93,7 @@ const Booking = () => {
 
 
 
-                                <div className="col-4">
+                                <div className="col-6">
                                     <input {...register("age", { required: true })} className="form-control" name="age" placeholder="Your Age" type="number" />
                                     {errors.age && <span className="text-danger">This field is required</span>}
                                 </div>
@@ -106,9 +111,9 @@ const Booking = () => {
                         </form>
                     </div>
                 </div>
-                <div className="col-md-4">
+                <div  className="col-md-4">
                     <h3>this is payment</h3>
-                <PaymentCard></PaymentCard>
+                <PaymentCard handlePayment={handlePayment}></PaymentCard>
                 </div>
             </div>
         </div>

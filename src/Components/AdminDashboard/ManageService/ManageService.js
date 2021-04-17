@@ -11,6 +11,19 @@ const ManageService = () => {
             .then(data=>setService(data))
         
     },[])
+    const handleDelete=(event)=>{
+        fetch(`http://localhost:5000/delete/${service._id}`,{
+            method:'DELETE'
+        })
+        .then(res => res.json())
+                .then(result => {
+                   if(result){
+                       event.target.parentNode.style.display ='none';
+                   }
+          
+        })
+
+}
     return (
         <div children="manage-service">
             <div className="row">
@@ -32,7 +45,7 @@ const ManageService = () => {
                                 <td>{service.duration}</td>
                                 <td>{service.classes}</td>
                                 <td>${service.price}</td>
-                                <td><button>Delete</button></td>
+                                <td><button onClick={handleDelete}>Delete</button></td>
                             </tr>)}
                         </tbody>
                     </table>
