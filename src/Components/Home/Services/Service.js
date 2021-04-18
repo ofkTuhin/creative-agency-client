@@ -7,7 +7,7 @@ import './service.css'
 const Service = () => {
     const[serviceInfo,setServiceInfo]=useState([])
     useEffect(()=>{
-        fetch('http://localhost:5000/getService')
+        fetch('https://vast-lake-00646.herokuapp.com/getService')
         .then(res=>res.json())
         .then(data=>setServiceInfo(data))
     },[])

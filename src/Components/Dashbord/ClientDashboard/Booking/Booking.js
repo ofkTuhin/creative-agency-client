@@ -14,7 +14,7 @@ const Booking = () => {
     const {_id}=useParams()
 
     useEffect(()=>{
-        fetch('http://localhost:5000/orderService/'+_id)
+        fetch('https://vast-lake-00646.herokuapp.com/orderService/'+_id)
         .then(res=>res.json())
         .then(data=>{setOrderProduct(data)
             console.log(orderProduct)
@@ -46,13 +46,9 @@ const Booking = () => {
     }
 
     return (
-        <div className="bookings">
+        <div className="bookings" >
 
-            <div className="header">
-                <img></img>
-                <h4>Booking</h4>
-                <h5 className="">name</h5>
-            </div>
+            
 
             <div className="row">
                 <div className="col-md-2" ><Sidebar _id={_id}></Sidebar></div>

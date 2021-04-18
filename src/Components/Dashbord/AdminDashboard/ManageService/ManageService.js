@@ -4,26 +4,34 @@ import './manageService.css'
 
 const ManageService = () => {
     const [service,setService]=useState([])
+   
     useEffect(()=>{
         
-            fetch('http://localhost:5000/getService')
+            fetch('https://vast-lake-00646.herokuapp.com/getService')
             .then(res=>res.json())
-            .then(data=>setService(data))
+            .then(data=>{setService(data)
+            
+           
+            })
         
     },[])
-    const handleDelete=(event)=>{
-        fetch(`http://localhost:5000/delete/${service._id}`,{
+    const deleteItem=(id)=>{
+        console.log(id)
+
+        fetch(`https://vast-lake-00646.herokuapp.com/delete/${id}`,{
             method:'DELETE'
         })
-        .then(res => res.json())
-                .then(result => {
-                   if(result){
-                       event.target.parentNode.style.display ='none';
-                   }
-          
+        .then(res=>res.json())
+        .then(data=>{
+            if(data){
+               const updateService= service.filter(sr=>sr._id===service._id)
+              setService(updateService)
+            }
         })
+    }
+    
 
-}
+ 
     return (
         <div children="manage-service">
             <div className="row">
@@ -39,14 +47,16 @@ const ManageService = () => {
                             <th>Price</th>
                             <th>Delete</th>
                         </tr>
-                        <tbody>
-                            {service.map(service=><tr>
+                      <tbody>
+                      {service.map(service=>  <tr id="parent">
                                 <td>{service.name}</td>
                                 <td>{service.duration}</td>
                                 <td>{service.classes}</td>
                                 <td>${service.price}</td>
-                                <td><button onClick={handleDelete}>Delete</button></td>
+                                <button onClick={()=>deleteItem(service._id)}>Delete</button>
+                                
                             </tr>)}
+                            
                         </tbody>
                     </table>
                 </div>

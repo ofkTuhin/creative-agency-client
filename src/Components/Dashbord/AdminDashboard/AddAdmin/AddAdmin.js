@@ -6,7 +6,7 @@ import Sidebar from '../Sidebar/Sidebar';
 const AddAdmin = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data =>{ console.log(data)
-        const url=`http://localhost:5000/addAdmin`
+        const url=`https://vast-lake-00646.herokuapp.com/addAdmin`
         fetch(url,{
           method:'POST',
           headers:{'content-type':'application/json'},
@@ -16,11 +16,12 @@ const AddAdmin = () => {
     };
   
   
-  
+    
     return (
-       <div className="row">
+      <div >
+         <div className="row">
             <div className="col-md-2"><Sidebar></Sidebar> </div>
-            <div className="col-md-6">    <form onSubmit={handleSubmit(onSubmit)} className="ship-form">
+            <div className="col-md-6">    <form style={{marginTop:"30px"}} onSubmit={handleSubmit(onSubmit)} className="ship-form">
         {/* register your input into the hook by invoking the "register" function */}
         <div className="form-group">
         <input className="form-control"  {...register("name",{ required: true })}  name="name" placeholder="name" />
@@ -43,6 +44,7 @@ const AddAdmin = () => {
       </form></div>
       
         </div>
+      </div>
        
       /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     )

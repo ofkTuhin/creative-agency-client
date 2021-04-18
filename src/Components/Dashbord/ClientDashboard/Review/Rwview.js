@@ -16,7 +16,7 @@ const Rwview = () => {
       }
 
        console.log(events)
-       const url=`http://localhost:5000/addReview`
+       const url=`https://vast-lake-00646.herokuapp.com/addReview`
        fetch(url,{
          method:'POST',
          headers:{'content-type':'application/json'},

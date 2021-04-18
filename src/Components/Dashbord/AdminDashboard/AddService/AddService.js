@@ -18,7 +18,7 @@ const AddService = () => {
       }
 
        console.log(events)
-       const url=`http://localhost:5000/addService`
+       const url=`https://vast-lake-00646.herokuapp.com/addService`
        fetch(url,{
          method:'POST',
          headers:{'content-type':'application/json'},
@@ -50,7 +50,7 @@ const AddService = () => {
                     <Sidebar></Sidebar>
 
                 </div>
-                <div className="col-md-6">    <form onSubmit={handleSubmit(onSubmit)} className="ship-form">
+                <div className="col-md-6">    <form onSubmit={handleSubmit(onSubmit)} className="ship-form"  style={{marginTop:"30px"}}>
         {/* register your input into the hook by invoking the "register" function */}
         <div className="form-group">
         <input className="form-control"  {...register("name",{ required: true })}  name="name" placeholder="name" />
