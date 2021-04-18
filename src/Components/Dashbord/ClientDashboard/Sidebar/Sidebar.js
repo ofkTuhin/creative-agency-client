@@ -6,9 +6,9 @@ const Sidebar = ({_id}) => {
     return (
         <div className="sidebar">
             <ul>
-                
+        
                <Link to={`/booking/${_id}`}> <li>Book</li></Link>
-               <li>Booking List</li>
+               <Link to={'/bookingList'}> <li>BookingList</li></Link>
                 <Link to='/review'><li>Review</li></Link>
                 
                 

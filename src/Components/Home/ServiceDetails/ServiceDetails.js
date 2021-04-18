@@ -5,7 +5,7 @@ import './serviceDetails.css'
 const ServiceDetails = (props) => {
     const {name,price,duration,support,_id,classes,imgUrl}=props.service
     return (
-        <div className="col-md-4">
+        <div className="col-md-4 col-12">
             <div className="serviceDetails shadow p-3 mb-5 bg-body rounded">
                 <img src={imgUrl}></img>
                 <h6>{name}</h6>

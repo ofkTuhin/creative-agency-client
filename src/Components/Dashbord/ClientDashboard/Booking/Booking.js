@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import './booking.css'
 import PaymentCard from '../PaymentCard/PaymentCard';
 import { useParams } from 'react-router';
-import { UserContext } from '../../../App';
+import { UserContext } from '../../../../App';
 
 
 
@@ -36,6 +36,7 @@ const Booking = () => {
            image:orderProduct.imgUrl,
            paymentID:paymentID
        }
+       console.log(bookingData)
        fetch('http://localhost:5000/serviceBooking',{
            method:'POST',
            headers:{'content-type':'application/json'},
@@ -73,7 +74,7 @@ const Booking = () => {
                     </div> */}
 
                             <div className="form-group">
-                                <input {...register("price", { required: true })} className="form-control" name="price" value={`$${orderProduct.price}`}/>
+                                <input {...register("price", { required: true })} className="form-control" name="price" value={orderProduct.price}/>
                                 {errors.price && <span>This field is required</span>}
                             </div>
                             <div className="form-group row">

@@ -11,7 +11,7 @@ const Banner = () => {
 
                <div className="col-md-6"></div>
               
-               <div className="col-md-6">
+               <div className="col-md-6 col-12">
             <div className="banner-content text-right">
             <h2>HI WE ARE</h2>
                         <h1>CREATIVE DESIGNER</h1>

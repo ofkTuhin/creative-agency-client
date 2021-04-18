@@ -43,7 +43,7 @@ const Rwview = () => {
         <div>
              <div className="row">
                  <div className="col-md-2"><Sidebar></Sidebar></div>
-        <div className="col-md-6">    <form onSubmit={handleSubmit(onSubmit)} className="ship-form">
+        <div className="col-md-6">    <form onSubmit={handleSubmit(onSubmit)} className="ship-form"  style={{margin:"30px"}}>
         {/* register your input into the hook by invoking the "register" function */}
         <div className="form-group">
         <input className="form-control"  {...register("name",{ required: true })}  name="name" placeholder="name" />

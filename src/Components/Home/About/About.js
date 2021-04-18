@@ -8,14 +8,14 @@ const About = () => {
             <div className="container">
                 <h2 className="text-center mb-5 heading-h2">About Us</h2>
                 <div className="row">
-                    <div className="col-md-6 ">
+                    <div className="col-md-6 col-12">
                         <div className="about-img">
                             <img className="img-fluid w-100" src={about}></img>
                         </div>
 
 
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-6 co-12">
                         <div className="about-details text-left">
                             <h2>Creative Agency Is complete solution for your Skill Development</h2>
                             <h6>And equal blame duty belongs to those who fail in their duty through weakne will.</h6>

@@ -6,6 +6,10 @@ import { useState } from 'react';
 import  { useContext } from 'react';
 import { UserContext } from '../../App';
 import { useHistory, useLocation } from 'react-router';
+import './login.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 
 if(!firebase.apps.length){firebase.initializeApp(firebaseConfig);}
@@ -194,7 +198,7 @@ const Login = () => {
   });
     }
     return (
-        <div>
+        <div className="container">
              <div style={{textAlign: 'center'}}>
       
   
@@ -207,28 +211,36 @@ const Login = () => {
  
      }
  
-     <div>
+     <div className="login-form">
       <h2>Sign up Form</h2> 
        
        <form onSubmit={handleSubmit}>
-        { newUser&&<input type="text" name="name" placeholder="Enter your name" onBlur={handleBlur} required></input>}
+        { newUser&&<div className="form-group"><input className="form-control" type="text" name="name" placeholder="Enter your name" onBlur={handleBlur} required></input></div>}
          <br></br>
-         <input type="email" name="email" placeholder="Enter your email address" onBlur={handleBlur} required></input>
+         <input className="form-control"  type="email" name="email" placeholder="Enter your email address" onBlur={handleBlur} required></input>
          <br></br>
-         <input type="password" name="password" placeholder="Enter your password" onBlur={handleBlur} required></input>
+         <input className="form-control"  type="password" name="password" placeholder="Enter your password" onBlur={handleBlur} required></input>
          <br></br>
-        { newUser?<input type="submit" value="sign up" placeholder="" ></input>:<input type="submit" value="sign in" placeholder=""></input>}
+        { newUser?<input type="submit" className="button" value="sign up" placeholder="" ></input>:<input type="submit" className="button btn" value="sign in" placeholder=""></input>}
          <br></br>
-         <input type="checkbox" onChange={()=>setNewUser(!newUser)}></input>
-         <label>New user please sign up</label>
+         {newUser ? <p>Already have account?<span onClick={() => setNewUser(!newUser)} style={{
+              color: 'blue',
+              cursor: 'pointer'
+
+            }}>login</span></p> : <p>create an account?<span onClick={() => setNewUser(!newUser)} style={{
+              color: 'blue',
+              cursor: 'pointer'
+
+            }}> Sign up Here</span></p>}
+         
        </form>
-       {userInfo.issigndIn?<button onClick={handleSignedOut}>Sign out</button>:<button onClick={handleSigned}>Sign in</button>
+       {userInfo.issigndIn?<button className="google" onClick={handleSignedOut}>Sign out</button>:<button  className="google"  onClick={handleSigned}><FontAwesomeIcon icon={faGoogle} className="icon" />Sign in With Google</button>
  
 }
       {
         userInfo.success ? <p style={{color:'green',cursor:'pointer'}}>{newUser?"create":'login'}  success</p>: <p style={{color:'red'}}>{userInfo.error}</p>
       }
-       <button onClick={handleSigned}>fb sign in</button>
+      
 
        
       

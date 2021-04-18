@@ -16,7 +16,7 @@ const Home = () => {
             <Review></Review>
             <Team></Team>
             <Footer></Footer>
-            <div style={{height:"500px"}}></div>
+            
         </div>
     );
 };

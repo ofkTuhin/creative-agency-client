@@ -3,7 +3,7 @@ import './rdetails.css'
 
 const ReviewDetails = ({review}) => {
     return (
-        <div className="col-md-4">
+        <div className="col-md-4 col-12">
             <div className="review-details">
                 <img src={review.imgUrl}></img>
 
